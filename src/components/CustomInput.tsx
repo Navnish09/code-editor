@@ -19,9 +19,13 @@ const CustomInput = ({onChange} : CustomInputProps) => {
         }}
         value={value}
         className={classnames(
-          "focus:outline-none w-full border-2 border-black z-10 rounded-md px-4 py-2 hover:shadow transition duration-200 bg-slate-700 mt-2 text-slate-500 font-medium"
+          "focus:outline-none w-full border-2 placeholder:text-slate-800 border-black z-10 rounded-md px-4 py-2 hover:shadow transition duration-200 bg-slate-600 mt-2 text-slate-900 font-medium"
         )}
       ></textarea>
+
+      <span className={classnames("text-slate-500 font-normal text-xs pt-1")}>
+        Pass input in expected squence with single space in between. e.g. 10 20
+      </span>
     </>
   );
 };

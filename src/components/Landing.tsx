@@ -17,21 +17,21 @@ import LanguagesDropdown from "./LanguagesDropdown";
 
 const BASE_URL = `${process.env.REACT_APP_RAPID_API_URL}/submissions`;
 
-const javascriptDefault = `#include <iostream>
+const javascriptDefault = `// Program to print half pyramid using
+
+#include <iostream>
 using namespace std;
 
-// Program to print half pyramid using
 int main(){
   int rows = 5;
   for(int i = 1; i <= rows; ++i) {
     for(int j = 1; j <= i; ++j) {
       cout << "* ";
     }
-    cout << "\n";
+    cout << "\\n";
   }
   return 0;
-}
-`;
+}`;
 
 const Landing = () => {
   const [code, setCode] = useState(javascriptDefault);
@@ -198,7 +198,7 @@ const Landing = () => {
       />
       <div className="flex flex-row">
         <div className="px-4 py-2">
-          <LanguagesDropdown onSelectChange={onSelectChange} />
+          <LanguagesDropdown onSelectChange={onSelectChange} language={language} />
         </div>
         {/* <div className="px-4 py-2">
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />

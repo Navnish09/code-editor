@@ -35,7 +35,7 @@ const OutputWindow = ({ outputDetails } : any) => {
   };
   return (
     <>
-      <h1 className="font-bold text-xl bg-clip-text text-slate-400 mb-2">
+      <h1 className="font-bold text-lg bg-clip-text text-slate-400 mb-2">
         Output
       </h1>
       <div className="w-full mb-3 h-56 bg-slate-800 rounded-md text-white font-normal text-sm overflow-y-auto">
