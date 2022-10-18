@@ -17,34 +17,24 @@ import LanguagesDropdown from "./LanguagesDropdown";
 
 const BASE_URL = `${process.env.REACT_APP_RAPID_API_URL}/submissions`;
 
-const javascriptDefault = `/**
-* Problem: Binary Search: Search a sorted array for a target value.
-*/
+const javascriptDefault = `#include <iostream>
+using namespace std;
 
-// Time: O(log n)
-const binarySearch = (arr, target) => {
- return binarySearchHelper(arr, target, 0, arr.length - 1);
-};
+// Program to print half pyramid using
+int main()
+{
+    int rows = 5;
 
-const binarySearchHelper = (arr, target, start, end) => {
- if (start > end) {
-   return false;
- }
- let mid = Math.floor((start + end) / 2);
- if (arr[mid] === target) {
-   return mid;
- }
- if (arr[mid] < target) {
-   return binarySearchHelper(arr, target, mid + 1, end);
- }
- if (arr[mid] > target) {
-   return binarySearchHelper(arr, target, start, mid - 1);
- }
-};
-
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const target = 5;
-console.log(binarySearch(arr, target));
+    for(int i = 1; i <= rows; ++i)
+    {
+        for(int j = 1; j <= i; ++j)
+        {
+            cout << "* ";
+        }
+        cout << "\n";
+    }
+    return 0;
+}
 `;
 
 const Landing = () => {
@@ -53,7 +43,7 @@ const Landing = () => {
   const [outputDetails, setOutputDetails] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [theme, setTheme] = useState({ value: "blackboard", label: "Blackboard" });
-  const [language, setLanguage] = useState(languageOptions[0]);
+  const [language, setLanguage] = useState(languageOptions[11]);
 
   const enterPress = useKeyPress("Enter");
   const ctrlPress = useKeyPress("Control");
