@@ -45,14 +45,11 @@ const Landing = () => {
   const ctrlPress = useKeyPress("Control");
 
   const onSelectChange = (sl:any) => {
-    console.log("selected Option...", sl);
     setLanguage(sl);
   };
 
   useEffect(() => {
-    if (enterPress && ctrlPress) {
-      console.log("enterPress", enterPress);
-      console.log("ctrlPress", ctrlPress);
+    if (ctrlPress && enterPress) {
       handleCompile();
     }
   }, [ctrlPress, enterPress]);
