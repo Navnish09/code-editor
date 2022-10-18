@@ -21,19 +21,15 @@ const javascriptDefault = `#include <iostream>
 using namespace std;
 
 // Program to print half pyramid using
-int main()
-{
-    int rows = 5;
-
-    for(int i = 1; i <= rows; ++i)
-    {
-        for(int j = 1; j <= i; ++j)
-        {
-            cout << "* ";
-        }
-        cout << "\n";
+int main(){
+  int rows = 5;
+  for(int i = 1; i <= rows; ++i) {
+    for(int j = 1; j <= i; ++j) {
+      cout << "* ";
     }
-    return 0;
+    cout << "\n";
+  }
+  return 0;
 }
 `;
 
