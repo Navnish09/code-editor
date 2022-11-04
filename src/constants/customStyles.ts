@@ -22,6 +22,10 @@ export const customStyles = {
       boxShadow: "none",
     },
   }),
+  input: (styles: Record<string, any>) => ({
+    ...styles,
+    color: "#94a3b8"
+  }),
   option: (styles :Record<string,any>) => {
     return {
       ...styles,
