@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/code-editor/static/css/main.fb5bd212.css",
-    "main.js": "/code-editor/static/js/main.352cf8c7.js",
+    "main.css": "/code-editor/static/css/main.25bf94ff.css",
+    "main.js": "/code-editor/static/js/main.edfc98e6.js",
     "static/js/266.c83f1d30.chunk.js": "/code-editor/static/js/266.c83f1d30.chunk.js",
     "static/js/4450.a10048e2.chunk.js": "/code-editor/static/js/4450.a10048e2.chunk.js",
     "static/js/8849.c0dfb0c0.chunk.js": "/code-editor/static/js/8849.c0dfb0c0.chunk.js",
@@ -54,13 +54,12 @@
     "static/js/5104.f4f25c7f.chunk.js": "/code-editor/static/js/5104.f4f25c7f.chunk.js",
     "static/js/9633.af032949.chunk.js": "/code-editor/static/js/9633.af032949.chunk.js",
     "static/js/5729.9af2aa50.chunk.js": "/code-editor/static/js/5729.9af2aa50.chunk.js",
-    "static/js/9437.496ce27b.chunk.js": "/code-editor/static/js/9437.496ce27b.chunk.js",
     "index.html": "/code-editor/index.html",
-    "main.fb5bd212.css.map": "/code-editor/static/css/main.fb5bd212.css.map",
-    "main.352cf8c7.js.map": "/code-editor/static/js/main.352cf8c7.js.map"
+    "main.25bf94ff.css.map": "/code-editor/static/css/main.25bf94ff.css.map",
+    "main.edfc98e6.js.map": "/code-editor/static/js/main.edfc98e6.js.map"
   },
   "entrypoints": [
-    "static/css/main.fb5bd212.css",
-    "static/js/main.352cf8c7.js"
+    "static/css/main.25bf94ff.css",
+    "static/js/main.edfc98e6.js"
   ]
 }
