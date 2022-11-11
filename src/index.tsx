@@ -3,7 +3,7 @@ import {createRoot} from "react-dom/client";
 
 import {App} from "./App";
 
-import "./index.css";
+import "./styles/main.css";
 
 const container = document.getElementById("root") as Element;
 

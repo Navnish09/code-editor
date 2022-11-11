@@ -1,0 +1,10 @@
+{
+  "judge0" : {
+    "getToken" : "/submissions",
+    "submission" : "/submissions/{{token}}"
+  },
+
+  "solidityCompiler" : {
+    "compile" : "/compile"
+  }
+}

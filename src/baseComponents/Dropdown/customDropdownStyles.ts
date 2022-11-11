@@ -2,7 +2,7 @@ export const customStyles = {
   singleValue : (styles : Record<string,any>) => ({
     ...styles,
     color : "#94a3b8",
-    "fontWeight" : "400"
+    fontWeight : "400"
   }),
   control: (styles: Record<string, any>) => ({
     ...styles,

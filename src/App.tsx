@@ -1,5 +1,4 @@
-import "./App.css";
-import Landing from "./components/Landing";
+import Landing from "./pages/Landing";
 
 export const App = () => {
   return <Landing />;
