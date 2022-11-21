@@ -1,7 +1,7 @@
 {
   "homepage": "http://Navnish09.github.io/code-editor",
   "name": "code-editor",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "@monaco-editor/react": "^4.4.6",
@@ -37,6 +37,13 @@
       "react-app/jest"
     ]
   },
+  "devDependencies": {
+    "@types/mustache": "^4.2.1",
+    "autoprefixer": "^10.4.12",
+    "gh-pages": "^4.0.0",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.8"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -48,12 +55,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/mustache": "^4.2.1",
-    "autoprefixer": "^10.4.12",
-    "gh-pages": "^4.0.0",
-    "postcss": "^8.4.16",
-    "tailwindcss": "^3.1.8"
   }
 }

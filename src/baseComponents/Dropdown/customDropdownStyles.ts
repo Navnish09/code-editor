@@ -1,9 +1,4 @@
-export const customStyles = {
-  singleValue : (styles : Record<string,any>) => ({
-    ...styles,
-    color : "#94a3b8",
-    fontWeight : "400"
-  }),
+export const customDropdownStyles = {
   control: (styles: Record<string, any>) => ({
     ...styles,
     width: "100%",
@@ -22,10 +17,13 @@ export const customStyles = {
       boxShadow: "none",
     },
   }),
-  input: (styles: Record<string, any>) => ({
+  
+  singleValue : (styles : Record<string,any>) => ({
     ...styles,
-    color: "#94a3b8"
+    color : "#94a3b8",
+    fontWeight : "400"
   }),
+
   option: (styles :Record<string,any>) => {
     return {
       ...styles,
@@ -42,6 +40,21 @@ export const customStyles = {
       },
     };
   },
+
+  input: (styles: Record<string, any>) => ({
+    ...styles,
+    color: "#94a3b8"
+  }),
+
+  placeholder: (defaultStyles: Record<string, any>) => {
+    return {
+      ...defaultStyles,
+      color: "#94a3b8",
+      fontSize: "0.8rem",
+      lineHeight: "1.75rem",
+    };
+  },
+
   menu: (styles :Record<string,any>) => {
     return {
       ...styles,
@@ -53,12 +66,4 @@ export const customStyles = {
     };
   },
 
-  placeholder: (defaultStyles: Record<string, any>) => {
-    return {
-      ...defaultStyles,
-      color: "#94a3b8",
-      fontSize: "0.8rem",
-      lineHeight: "1.75rem",
-    };
-  },
 };

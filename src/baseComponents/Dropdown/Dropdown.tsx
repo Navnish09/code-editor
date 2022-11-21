@@ -1,6 +1,6 @@
 import React from "react";
 import Select, { GroupBase, Props } from "react-select";
-import { customStyles } from "./customDropdownStyles";
+import { customDropdownStyles } from "./customDropdownStyles";
 
 export const Dropdown = <
   Option,
@@ -10,7 +10,7 @@ export const Dropdown = <
   return (
     <Select
       {...props}
-      styles={customStyles}
+      styles={customDropdownStyles}
     />
   );
 };

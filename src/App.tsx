@@ -1,7 +1,7 @@
-import Landing from "./pages/Landing";
+import Main from "./pages/Main";
 
 export const App = () => {
-  return <Landing />;
+  return <Main />;
 }
 
 export default App;

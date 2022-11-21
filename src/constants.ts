@@ -24,11 +24,14 @@ export const TOASTIFY_MESSAGES = {
   COMPILATION_SUCCESS: `Compiled Successfully!`,
   COMPILATION_ERROR: `Something went wrong! Please try again.`,
   QUOTA_EXCEEDED: `Requests quota has been exceeded for the Day!`,
+  SUBMISSION_SUCCESS: `Submission Successfully!`,
 }
 
 export const SOLIDITY_KEYS = {
   abi : "abi",
   bytecode : "bytecode",
 }
+
+export const CUSTOM_INPUT_INTSRUCTION = "Pass inputs in expected squence with single space in between.e.g. 10 20" 
 
 export const SOLIDITY_COMPILATION_SUCCESS_MESSAGE = "Compilation Successful. You can copy the ABI and Bytecode from the above panel.";

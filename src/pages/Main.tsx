@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import useKeyPress from "../hooks/useKeyPress";
 import { defineTheme } from "../lib/defineTheme";
 import languageOptions from "../configs/languageOptions.json";
 
@@ -12,27 +11,39 @@ import { DEFAULT_CODE, DEFAULT_THEME, TOASTIFY_MESSAGES } from "../constants";
 import { showErrorToast, showSuccessToast } from "../lib/toastifyHelpers";
 import { CustomInput, OutputWindow, OutputDetails, CodeEditorWindow, LanguagesDropdown } from "../components";
 import { compileSolidity } from "../apis/solidityCompilerApi";
+import { addNewSubmission } from "../apis/submissionApis";
+import { Button } from "../baseComponents/Button";
 
-const Landing = () => {
+export const Main = () => {
   const [code, setCode] = useState(DEFAULT_CODE);
-  const [customInput, setCustomInput] = useState("Custom Inputs");
+  const [validCode, setValidCode] = useState("");
+  const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState<Record<string, any> | null>(null);
   const [processing, setProcessing] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
   const [theme] = useState(DEFAULT_THEME);
   const [language, setLanguage] = useState<Language>(languageOptions[11]);
 
-  const ctrlPress = useKeyPress("Control");
-  const enterPress = useKeyPress("Enter");
+  const resetStates = () => {
+    setCustomInput("");
+    setOutputDetails(null);
+    setProcessing(false);
+    setSubmitting(false);
+  };
 
   // Hanlder for solidity compiler
   const handleSolidityCode = async () => {
-      let res = await compileSolidity(code);
-      setOutputDetails(res);
-      showSuccessToast(TOASTIFY_MESSAGES.COMPILATION_SUCCESS);
-      setProcessing(false);
+    let res = await compileSolidity(code);
+    setOutputDetails(res);
+    showSuccessToast(TOASTIFY_MESSAGES.COMPILATION_SUCCESS);
+    setProcessing(false);
   }
 
 
+  /**
+   * Compile code and get token
+   */
   const handleCompile = async () => {
     setProcessing(true);
 
@@ -62,13 +73,15 @@ const Landing = () => {
           showErrorToast(TOASTIFY_MESSAGES.QUOTA_EXCEEDED);
           break;
       }
-
+      
       setProcessing(false);
-
-
     }
   };
 
+  /**
+   * Get code submission status
+   * @param token token from judge0
+   */
   const checkStatus = async (token: string) => {
     try {
       const response = await getSubmission(token);
@@ -83,6 +96,12 @@ const Landing = () => {
           break;
 
         default:
+          if (response.data.status?.description === "Accepted") {
+            setValidCode(code);
+          } else {
+            setValidCode("");
+          }
+
           setProcessing(false);
           setOutputDetails(response.data);
           showSuccessToast(TOASTIFY_MESSAGES.COMPILATION_SUCCESS);
@@ -93,10 +112,28 @@ const Landing = () => {
     }
   };
 
-  // Use Ctrl + Enter keypress to compile code
-  useEffect(() => {
-    (ctrlPress && enterPress) && handleCompile();
-  }, [ctrlPress, enterPress]);
+  /**
+   * Submit code to internal database
+   */
+  const handleSubmit = async () => {
+    setSubmitting(true);
+
+    try {
+      await addNewSubmission({
+        language: language.value,
+        code: code,
+        name : "Testing",
+        email : "testing@email.com"
+      })
+      
+      resetStates();
+      showSuccessToast(TOASTIFY_MESSAGES.SUBMISSION_SUCCESS);
+
+    } catch (error : any) {
+      setSubmitting(false);
+      showErrorToast(error.message);
+    }
+  }
 
   // Define default theme for monaco editor
   useEffect(() => {
@@ -108,7 +145,7 @@ const Landing = () => {
     setOutputDetails(null);
   }, [language.value]);
 
-
+  
   return (
     <div className="bg-slate-900 pt-5 w-full">
       <ToastContainer
@@ -144,19 +181,36 @@ const Landing = () => {
             <CustomInput
               onChange={(value: string) => setCustomInput(value)}
             />
-            <button
-              onClick={handleCompile}
-              disabled={!code || processing}
-              className={`mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-slate-800 text-slate-400 flex-shrink-0 ${!code ? "opacity-50" : ""}`}
-            >
-              {processing ? "Processing..." : "Run"}
-            </button>
+            <div className="flex gap-4">
+
+              <Button
+                onClick={handleCompile}
+                disabled={!code || processing || submitting}
+                className={`${(!code || processing || submitting) ? "opacity-50" : ""}`}
+              >
+                {processing ? "Processing..." : "Run"}
+              </Button>
+
+              {
+                (
+                  (outputDetails?.status?.description === "Accepted" && code) && (validCode === code)
+                ) && (
+                  <Button
+                    onClick={handleSubmit}
+                    disabled={processing || submitting}
+                    className={`${(processing || submitting) ? "opacity-50" : ""}`}
+                  >
+                    {!submitting ? "Submit Code" : "Submitting"}
+                  </Button>
+                )
+              }
+            </div>
           </div>
           {outputDetails && <OutputDetails outputDetails={outputDetails} />}
         </div>
       </div>
     </div>
   );
-  
+
 };
-export default Landing;
+export default Main;

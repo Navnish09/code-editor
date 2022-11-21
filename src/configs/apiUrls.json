@@ -6,5 +6,9 @@
 
   "solidityCompiler" : {
     "compile" : "/compile"
+  },
+
+  "submissions" : {
+    "addSubmission" : "/submission"
   }
 }

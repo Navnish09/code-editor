@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CUSTOM_INPUT_INTSRUCTION } from "../constants";
 
 interface CustomInputProps{
   onChange : Function
@@ -21,7 +22,7 @@ export const CustomInput = ({onChange} : CustomInputProps) => {
       ></textarea>
 
       <span className="text-slate-500 font-normal text-xs pt-1">
-        Pass input in expected squence with single space in between. e.g. 10 20
+        {CUSTOM_INPUT_INTSRUCTION}
       </span>
     </>
   );

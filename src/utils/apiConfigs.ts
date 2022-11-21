@@ -5,6 +5,6 @@ export const createJudge0APIUrl = (endpoint: string) => {
 }
 
 // Function to build solidty compiler API URL
-export const createSolidityCompilerAPIUrl = (endpoint: string) => {
-  return `${process.env.REACT_APP_SOLIDITY_COMPILER_URL}${endpoint}`;
+export const createInternalServerAPIUrl = (endpoint: string) => {
+  return `${process.env.REACT_APP_INTERNAL_SERVER_URL}${endpoint}`;
 }

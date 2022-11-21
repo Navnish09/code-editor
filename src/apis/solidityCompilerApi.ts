@@ -1,10 +1,15 @@
 import apiUrls from "../configs/apiUrls.json";
-import { createSolidityCompilerAPIUrl } from "../utils/apiConfigs";
+import { createInternalServerAPIUrl } from "../utils/apiConfigs";
 
 const solidityCompilerApi = apiUrls.solidityCompiler; 
 
+/**
+ * 
+ * @param code Code to compile
+ * @returns Fetch Promise with the json response
+ */
 export const compileSolidity = (code : string) => {
-  const url = createSolidityCompilerAPIUrl(solidityCompilerApi.compile);
+  const url = createInternalServerAPIUrl(solidityCompilerApi.compile);
 
   const options = {
     method: "POST",
