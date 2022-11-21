@@ -17,6 +17,8 @@ int main(){
 
 export const DEFAULT_THEME = { value: "blackboard", label: "Blackboard" };
 
+export const DEFAULT_NAME_VALUE = "who is coding?"
+
 export const SOLIDITY_LANG_VALUE = "sol";
 
 // Toastify messages

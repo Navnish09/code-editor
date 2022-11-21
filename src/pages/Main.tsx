@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -7,12 +7,13 @@ import languageOptions from "../configs/languageOptions.json";
 
 import { Language } from "../models/LanguageModel";
 import { getSubmission, getToken } from "../apis/judge0";
-import { DEFAULT_CODE, DEFAULT_THEME, TOASTIFY_MESSAGES } from "../constants";
+import { DEFAULT_CODE, DEFAULT_NAME_VALUE, DEFAULT_THEME, TOASTIFY_MESSAGES } from "../constants";
 import { showErrorToast, showSuccessToast } from "../lib/toastifyHelpers";
 import { CustomInput, OutputWindow, OutputDetails, CodeEditorWindow, LanguagesDropdown } from "../components";
 import { compileSolidity } from "../apis/solidityCompilerApi";
 import { addNewSubmission } from "../apis/submissionApis";
 import { Button } from "../baseComponents/Button";
+import { InlineEdit } from "../baseComponents/InlineEdit";
 
 export const Main = () => {
   const [code, setCode] = useState(DEFAULT_CODE);
@@ -21,6 +22,7 @@ export const Main = () => {
   const [outputDetails, setOutputDetails] = useState<Record<string, any> | null>(null);
   const [processing, setProcessing] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [userName, setUserName] = useState("");
 
   const [theme] = useState(DEFAULT_THEME);
   const [language, setLanguage] = useState<Language>(languageOptions[11]);
@@ -73,7 +75,7 @@ export const Main = () => {
           showErrorToast(TOASTIFY_MESSAGES.QUOTA_EXCEEDED);
           break;
       }
-      
+
       setProcessing(false);
     }
   };
@@ -122,14 +124,14 @@ export const Main = () => {
       await addNewSubmission({
         language: language.value,
         code: code,
-        name : "Testing",
-        email : "testing@email.com"
+        name: userName || "No name was provided",
+        email: "testing@email.com"
       })
-      
+
       resetStates();
       showSuccessToast(TOASTIFY_MESSAGES.SUBMISSION_SUCCESS);
 
-    } catch (error : any) {
+    } catch (error: any) {
       setSubmitting(false);
       showErrorToast(error.message);
     }
@@ -145,7 +147,7 @@ export const Main = () => {
     setOutputDetails(null);
   }, [language.value]);
 
-  
+
   return (
     <div className="bg-slate-900 pt-5 w-full">
       <ToastContainer
@@ -163,6 +165,17 @@ export const Main = () => {
       <div className="flex flex-row">
         <div className="px-4 py-2">
           <LanguagesDropdown onSelectChange={(sl: Language) => setLanguage(sl)} language={language} />
+        </div>
+        <div className="pr-4 pl-4 flex items-center">
+          <div className="text-slate-500 flex px-2 items-center outline-slate-800 font-normal text-md outline-1">
+            <span className="text-slate-400 font-medium">Name:</span>
+            <InlineEdit
+              width={"20ch"}
+              value={userName}
+              onChange={((value) => setUserName(value))}
+              placeholder={DEFAULT_NAME_VALUE}
+            />
+          </div>
         </div>
       </div>
       <div className="flex flex-row space-x-4 items-start px-4 py-4">
