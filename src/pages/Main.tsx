@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import { ToastContainer } from "react-toastify";
+import React, { useEffect, useContext, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
 import { defineTheme } from "../lib/defineTheme";
@@ -7,15 +6,18 @@ import languageOptions from "../configs/languageOptions.json";
 
 import { Language } from "../models/LanguageModel";
 import { getSubmission, getToken } from "../apis/judge0";
-import { DEFAULT_CODE, DEFAULT_NAME_VALUE, DEFAULT_THEME, TOASTIFY_MESSAGES } from "../constants";
+import { DEFAULT_CODE, DEFAULT_THEME, TOASTIFY_MESSAGES } from "../constants";
 import { showErrorToast, showSuccessToast } from "../lib/toastifyHelpers";
 import { CustomInput, OutputWindow, OutputDetails, CodeEditorWindow, LanguagesDropdown } from "../components";
 import { compileSolidity } from "../apis/solidityCompilerApi";
 import { addNewSubmission } from "../apis/submissionApis";
 import { Button } from "../baseComponents/Button";
-import { InlineEdit } from "../baseComponents/InlineEdit";
+import { UserContext } from "../contexts/userContext";
+import { Badge } from "../baseComponents";
 
 export const Main = () => {
+  const { user, logout } = useContext(UserContext);
+  console.log(user);
   const [code, setCode] = useState(DEFAULT_CODE);
   const [validCode, setValidCode] = useState("");
   const [customInput, setCustomInput] = useState("");
@@ -41,7 +43,6 @@ export const Main = () => {
     showSuccessToast(TOASTIFY_MESSAGES.COMPILATION_SUCCESS);
     setProcessing(false);
   }
-
 
   /**
    * Compile code and get token
@@ -124,8 +125,7 @@ export const Main = () => {
       await addNewSubmission({
         language: language.value,
         code: code,
-        name: userName || "No name was provided",
-        email: "testing@email.com"
+        email: user.email
       })
 
       resetStates();
@@ -149,32 +149,18 @@ export const Main = () => {
 
 
   return (
-    <div className="bg-slate-900 pt-5 w-full">
-      <ToastContainer
-        position="top-right"
-        theme="dark"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <div className="flex flex-row">
+    <div className="bg-slate-900 pt-5 w-full h-full">
+      <div className="flex flex-row justify-between">
         <div className="px-4 py-2">
           <LanguagesDropdown onSelectChange={(sl: Language) => setLanguage(sl)} language={language} />
         </div>
         <div className="pr-4 pl-4 flex items-center">
           <div className="text-slate-500 flex px-2 items-center outline-slate-800 font-normal text-md outline-1">
-            <span className="text-slate-400 font-medium">Name:</span>
-            <InlineEdit
-              width={"20ch"}
-              value={userName}
-              onChange={((value) => setUserName(value))}
-              placeholder={DEFAULT_NAME_VALUE}
-            />
+            <span className="text-slate-400 font-medium">User :</span>
+            <div className="flex gap-2 items-center">
+              <span className="px-1 text-slate-500">{user.email}</span>
+              <Badge onClick={logout}>Logout</Badge>
+            </div>
           </div>
         </div>
       </div>
@@ -199,7 +185,7 @@ export const Main = () => {
               <Button
                 onClick={handleCompile}
                 disabled={!code || processing || submitting}
-                className={`${(!code || processing || submitting) ? "opacity-50" : ""}`}
+                className="mt-4"
               >
                 {processing ? "Processing..." : "Run"}
               </Button>
@@ -210,8 +196,9 @@ export const Main = () => {
                 ) && (
                   <Button
                     onClick={handleSubmit}
+                    type="success"
                     disabled={processing || submitting}
-                    className={`${(processing || submitting) ? "opacity-50" : ""}`}
+                    className="mt-4"
                   >
                     {!submitting ? "Submit Code" : "Submitting"}
                   </Button>

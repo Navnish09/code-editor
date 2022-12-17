@@ -1,14 +1,7 @@
 import React from "react";
+import { inlineEditProps } from "./model";
 
-interface Props {
-  value: string;
-  onChange: (value: string) => void;
-  disableNewLine?: boolean;
-  width?: any
-  placeholder?: string;
-}
-
-export const InlineEdit = ({ value, onChange, placeholder = "", width = "25ch" }: Props) => {
+export const InlineEdit = ({ value, onChange, placeholder = "", width = "25ch" }: inlineEditProps) => {
   const [show, setShow] = React.useState(true);
 
   const blurHandler = () => {

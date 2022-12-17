@@ -1,7 +1,12 @@
-import Main from "./pages/Main";
+import { UserProvider } from "./contexts/userContext";
+import { Landing } from "./pages/Landing";
 
 export const App = () => {
-  return <Main />;
+  return (
+    <UserProvider>
+      <Landing />
+    </UserProvider>
+  );
 }
 
 export default App;

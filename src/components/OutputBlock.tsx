@@ -12,7 +12,7 @@ interface Props {
 // Component to display the success output of the code
 const SuccessOutput = ({ output }: { output: string }) => {
   return (
-    <pre className="px-2 py-1 font-normal text-xs text-green-500 whitespace-pre-line overflow-hidden">
+    <pre className="px-2 py-1 font-normal text-xs text-emerald-500 whitespace-pre-line overflow-hidden">
       {output}
     </pre>
   )

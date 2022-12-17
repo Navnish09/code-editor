@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { PropsForTokenAPI } from "../models/Judge0Model";
+import { PropsForTokenAPI } from "../models/apiModels";
 import apiUrls from "../configs/apiUrls.json";
 import { createJudge0APIUrl } from "../utils/apiConfigs";
 import Mustache from "mustache";
