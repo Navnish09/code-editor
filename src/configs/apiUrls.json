@@ -10,5 +10,11 @@
 
   "submissions" : {
     "addSubmission" : "/submission"
+  },
+
+  "user" : {
+    "validateUser" : "/validateUser",
+    "registerUser" : "/registerUser",
+    "loginUser" : "/loginUser"
   }
 }

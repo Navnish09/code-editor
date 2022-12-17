@@ -37,3 +37,20 @@ export const SOLIDITY_KEYS = {
 export const CUSTOM_INPUT_INTSRUCTION = "Pass inputs in expected squence with single space in between.e.g. 10 20" 
 
 export const SOLIDITY_COMPILATION_SUCCESS_MESSAGE = "Compilation Successful. You can copy the ABI and Bytecode from the above panel.";
+
+export const LOGIN_BUTTON_STATES = {
+  validate : "validate",
+  register : "register",
+  login : "login",
+};
+
+export const LOGIN_BUTTON_TEXTS = {
+  validate : "Submit",
+  register : "Register",
+  login : "Login",
+}
+
+export const TEXT_CONTENT = {
+  userDetailsModalTitle : "User Details",
+  userDetailsModalDescription: "Enter your email to register yourself.",
+}
