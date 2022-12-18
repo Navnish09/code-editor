@@ -90,15 +90,15 @@
     "value": "rust"
   },
   {
+    "id": 90,
+    "name": "Solidity (^0.8.17)",
+    "label": "Solidity (^0.8.17)",
+    "value": "sol"
+  },
+  {
     "id": 74,
     "name": "TypeScript (3.7.4)",
     "label": "TypeScript (3.7.4)",
     "value": "typescript"
-  },
-  {
-    "id": 84,
-    "name": "Visual Basic.Net (vbnc 0.0.0.5943)",
-    "label": "Visual Basic.Net (vbnc 0.0.0.5943)",
-    "value": "vbnet"
   }
 ]
