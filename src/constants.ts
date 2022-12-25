@@ -1,3 +1,6 @@
+
+export const DEFAULT_LANGUAGE_ID = 54;
+
 // Default code to ne used in the editor.
 export const DEFAULT_CODE = `// Program to print half pyramid using
 
