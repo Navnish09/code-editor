@@ -6,7 +6,7 @@ import languageOptions from "../configs/languageOptions.json";
 
 import { Language } from "../models/LanguageModel";
 import { getSubmission, getToken } from "../apis/judge0";
-import { DEFAULT_CODE, DEFAULT_THEME, TOASTIFY_MESSAGES } from "../constants";
+import { DEFAULT_CODE, DEFAULT_LANGUAGE_ID, DEFAULT_THEME, TOASTIFY_MESSAGES } from "../constants";
 import { showErrorToast, showSuccessToast } from "../lib/toastifyHelpers";
 import { CustomInput, OutputWindow, OutputDetails, CodeEditorWindow, LanguagesDropdown } from "../components";
 import { compileSolidity } from "../apis/solidityCompilerApi";
@@ -17,17 +17,17 @@ import { Badge } from "../baseComponents";
 
 export const Main = () => {
   const { user, logout } = useContext(UserContext);
-  console.log(user);
+
   const [code, setCode] = useState(DEFAULT_CODE);
   const [validCode, setValidCode] = useState("");
   const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState<Record<string, any> | null>(null);
   const [processing, setProcessing] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [userName, setUserName] = useState("");
-
   const [theme] = useState(DEFAULT_THEME);
-  const [language, setLanguage] = useState<Language>(languageOptions[11]);
+  const [language, setLanguage] = useState<Language>(
+    languageOptions.find((lang) => lang.id === DEFAULT_LANGUAGE_ID)!
+  );
 
   const resetStates = () => {
     setCustomInput("");
