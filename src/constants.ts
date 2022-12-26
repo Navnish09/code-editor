@@ -58,3 +58,15 @@ export const TEXT_CONTENT = {
   userDetailsModalTitle : "User Details",
   userDetailsModalDescription: "Enter your email to register yourself.",
 }
+
+export const SIZE_MAP = {
+  max : "max-content",
+  min : "min-content",
+  xs: "20rem",
+  sm: "28rem",
+  md: "36rem",
+  lg: "42rem",
+  xl: "56rem",
+  "2xl": "72rem",
+  full : "100%",
+};

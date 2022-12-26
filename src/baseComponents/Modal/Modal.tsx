@@ -1,4 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
+import { SIZE_MAP } from '../../constants'
 import { Fragment } from 'react'
 import { Button } from '../Button'
 import { ModalProps } from './model'
@@ -11,9 +12,9 @@ export const Modal = ({
   title,
   description,
   blurOverlay = true,
-  size = 'md',
+  size = 'sm',
 }: ModalProps) => {
-  const modalSize =  `max-w-${size}`
+  const width = SIZE_MAP[size as keyof typeof SIZE_MAP]
 
   const closeModal = () => {
     toggleModal?.(false)
@@ -46,7 +47,7 @@ export const Modal = ({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className={`w-full ${modalSize} transform overflow-hidden rounded-xl bg-slate-900 p-8 text-left align-middle shadow-md transition-all`}>
+                <Dialog.Panel className={`transform overflow-hidden rounded-xl bg-slate-900 p-8 text-left align-middle shadow-md transition-all`} style={{ width }}>
                   {
                     title && (
                       <Dialog.Title
