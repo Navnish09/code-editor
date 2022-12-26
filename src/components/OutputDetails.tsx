@@ -1,5 +1,6 @@
 import React from "react";
-import { Badge } from "../baseComponents/Badge/Badge";
+
+import { Badge } from "baseComponents";
 
 export const OutputDetails = ({ outputDetails }: any) => {
 

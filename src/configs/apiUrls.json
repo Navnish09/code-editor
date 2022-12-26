@@ -16,5 +16,9 @@
     "validateUser" : "/validateUser",
     "registerUser" : "/registerUser",
     "loginUser" : "/loginUser"
+  },
+
+  "questions" : {
+    "getQuestion" : "/getQuestions?id={{questionId}}"
   }
 }

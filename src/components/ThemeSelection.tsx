@@ -1,6 +1,6 @@
 import React from "react";
 import monacoThemes from "monaco-themes/themes/themelist.json";
-import { Dropdown } from "../baseComponents/Dropdown";
+import { Dropdown } from "baseComponents";
 
 export const ThemeDropdown = ({ handleThemeChange, theme } : any) => {
   return (

@@ -14,4 +14,5 @@ export interface ModalProps {
   footerButtons?: Array<FooterButton>;
   toggleModal?: (state :SetStateAction<boolean>) => void;
   blurOverlay?: boolean;
+  size?: string;
 }

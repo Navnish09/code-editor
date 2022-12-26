@@ -1,10 +1,13 @@
-import { UserProvider } from "./contexts/userContext";
-import { Landing } from "./pages/Landing";
+import { useRoutes } from "react-router-dom";
+
+import { UserProvider } from "contexts";
+import Routes from "./routes/Routes";
 
 export const App = () => {
+  const element = useRoutes(Routes);
   return (
     <UserProvider>
-      <Landing />
+      {element}
     </UserProvider>
   );
 }

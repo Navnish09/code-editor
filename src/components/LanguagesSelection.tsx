@@ -1,7 +1,8 @@
 import React from "react";
-import languageOptions from "../configs/languageOptions.json";
-import { Language } from "../models/LanguageModel";
-import { Dropdown } from "../baseComponents/Dropdown";
+
+import { Dropdown } from "baseComponents";
+import languageOptions from "configs/languageOptions.json";
+import { Language } from "models";
 
 interface Props {
   language: Language;
@@ -13,7 +14,7 @@ export const LanguagesDropdown = ({ language, onSelectChange }: Props) => {
     <Dropdown
       placeholder={`Filter By Category`}
       options={languageOptions}
-      defaultValue={language}
+      value={language}
       onChange={(selectedOption: any) => onSelectChange(selectedOption)}
     />
   );

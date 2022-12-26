@@ -1,0 +1,6 @@
+[
+  {
+    "path": ":questionId?",
+    "component": "Landing"
+  }
+]
