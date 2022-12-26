@@ -1,21 +1,20 @@
 import React, { useEffect, useContext, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
-import { defineTheme } from "../lib/defineTheme";
-import languageOptions from "../configs/languageOptions.json";
-
-import { Language } from "../models/LanguageModel";
-import { getSubmission, getToken } from "../apis/judge0";
+import { compileSolidity, addNewSubmission, getSubmission, getToken } from "apis";
+import { Button, Badge } from "baseComponents";
+import { CustomInput, OutputWindow, OutputDetails, CodeEditorWindow, LanguagesDropdown } from "components";
+import languageOptions from "configs/languageOptions.json";
+import { UserContext } from "contexts";
+import { defineTheme, showErrorToast, showSuccessToast } from "lib";
+import { Language, Question } from "models";
 import { DEFAULT_CODE, DEFAULT_LANGUAGE_ID, DEFAULT_THEME, TOASTIFY_MESSAGES } from "../constants";
-import { showErrorToast, showSuccessToast } from "../lib/toastifyHelpers";
-import { CustomInput, OutputWindow, OutputDetails, CodeEditorWindow, LanguagesDropdown } from "../components";
-import { compileSolidity } from "../apis/solidityCompilerApi";
-import { addNewSubmission } from "../apis/submissionApis";
-import { Button } from "../baseComponents/Button";
-import { UserContext } from "../contexts/userContext";
-import { Badge } from "../baseComponents";
 
-export const Main = () => {
+type Props = {
+  questionDetails: Question | null;
+};
+
+export const Main = ({ questionDetails }: Props) => {
   const { user, logout } = useContext(UserContext);
 
   const [code, setCode] = useState(DEFAULT_CODE);
@@ -146,6 +145,17 @@ export const Main = () => {
   useEffect(() => {
     setOutputDetails(null);
   }, [language.value]);
+
+  // Set the question details in the editor
+  useEffect(() => {
+    if (questionDetails) {
+      questionDetails.language && setLanguage((prev) => {
+        return languageOptions.find((lang) => lang.id === +questionDetails.language) || prev
+      });
+
+      questionDetails.question && setCode(`//${questionDetails.question}`);
+    }
+  }, [questionDetails])
 
 
   return (

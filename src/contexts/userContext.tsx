@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, SetStateAction } from "react";
+import { createContext, useState, useLayoutEffect } from "react";
 import jwtDecode from "jwt-decode";
 
 interface User{
@@ -31,7 +31,7 @@ export const UserProvider = ({ children }: any) => {
     setUser({ email: "", isLoggedIn: false });
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const token = localStorage.getItem("token");
     if (token) { setLogin(token); }
   }, []);

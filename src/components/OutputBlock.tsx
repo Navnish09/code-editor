@@ -1,7 +1,8 @@
 import React from "react";
-import { Copy } from "../assets/svgComponents/Copy";
+
+import { Copy } from "assets/svgComponents/Copy";
+import { Language } from "models";
 import { SOLIDITY_COMPILATION_SUCCESS_MESSAGE, SOLIDITY_KEYS, SOLIDITY_LANG_VALUE } from "../constants";
-import { Language } from "../models/LanguageModel";
 
 interface Props {
   outputDetails: Record<string, any> | null;

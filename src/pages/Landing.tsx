@@ -2,20 +2,21 @@ import React, { useEffect, useState, useContext } from "react";
 import { ToastContainer } from "react-toastify";
 import { useForm } from "react-hook-form";
 
-import Main from "../pages/Main";
-import { UserDetails } from "../components";
+import { validateUser, registerUser, loginUser } from "apis";
+import { FooterButton, Modal } from "baseComponents";
+import { UserDetails } from "components";
+import { UserContext } from "contexts";
 import { LOGIN_BUTTON_STATES, LOGIN_BUTTON_TEXTS, TEXT_CONTENT } from "../constants";
-import { FooterButton, Modal } from "../baseComponents";
-import { validateUser, registerUser, loginUser } from "../apis/userApis";
 import { showErrorToast } from "../lib/toastifyHelpers";
-import { UserContext } from "../contexts/userContext";
+import MainWrapper from "./MainWrapper";
 
 export const Landing = () => {
+
   const { user, setLogin } = useContext(UserContext);
 
   const { register, formState: { errors, isValid }, getValues, handleSubmit, setValue } = useForm({ mode: "onChange" });
 
-  const [userModalToggle, setUserModalToggle] = useState(!!user.isLoggedIn);
+  const [userModalToggle, setUserModalToggle] = useState(!user.isLoggedIn);
   const [formState, setFormState] = useState(LOGIN_BUTTON_STATES.validate);
   const [loading, setLoading] = useState(false);
 
@@ -130,7 +131,7 @@ export const Landing = () => {
         footerButtons={footerButtons}
       />
 
-      {!userModalToggle && <Main />}
+      {user.isLoggedIn && <MainWrapper />}
     </div>
   );
 }

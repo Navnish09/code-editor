@@ -54,6 +54,7 @@ export const LOGIN_BUTTON_TEXTS = {
 }
 
 export const TEXT_CONTENT = {
+  loadingQuestion: "Loading Question...",
   userDetailsModalTitle : "User Details",
   userDetailsModalDescription: "Enter your email to register yourself.",
 }

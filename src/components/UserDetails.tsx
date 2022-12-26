@@ -1,4 +1,4 @@
-import { Input } from "../baseComponents/Input";
+import { Input } from "baseComponents";
 import { LOGIN_BUTTON_STATES } from "../constants";
 
 const validationSchema = {

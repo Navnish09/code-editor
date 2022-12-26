@@ -1,7 +1,5 @@
 import React from "react";
-
-import { CodeEditorProps } from "../baseComponents/CodeEditor/model";
-import {CodeEditor} from "../baseComponents/CodeEditor/CodeEditor";
+import { CodeEditorProps, CodeEditor } from "baseComponents";
 
 export const CodeEditorWindow = (props: CodeEditorProps) => {
   return (

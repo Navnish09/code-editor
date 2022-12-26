@@ -11,7 +11,9 @@ export const Modal = ({
   title,
   description,
   blurOverlay = true,
+  size = 'md',
 }: ModalProps) => {
+  const modalSize =  `max-w-${size}`
 
   const closeModal = () => {
     toggleModal?.(false)
@@ -44,17 +46,26 @@ export const Modal = ({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-xl bg-slate-900 p-8 text-left align-middle shadow-md transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-slate-400"
-                  >
-                    {title}
-                  </Dialog.Title>
+                <Dialog.Panel className={`w-full ${modalSize} transform overflow-hidden rounded-xl bg-slate-900 p-8 text-left align-middle shadow-md transition-all`}>
+                  {
+                    title && (
+                      <Dialog.Title
+                        as="h3"
+                        className="text-lg font-medium leading-6 text-slate-400"
+                      >
+                        {title}
+                      </Dialog.Title>
 
-                  <Dialog.Description className="mt-2 text-slate-600 font-medium">
-                    {description}
-                  </Dialog.Description>
+                    )
+                  }
+                  {
+                    description && (
+
+                      <Dialog.Description className="mt-2 text-slate-600 font-medium">
+                        {description}
+                      </Dialog.Description>
+                    )
+                  }
 
                   <div className="mt-2">
                     {content}

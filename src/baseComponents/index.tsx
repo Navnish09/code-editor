@@ -3,4 +3,5 @@ export * from "./Button";
 export * from "./CodeEditor";
 export * from "./Dropdown";
 export * from "./InlineEdit";
+export * from "./Input";
 export * from "./Modal";
