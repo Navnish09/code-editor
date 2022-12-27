@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { compileSolidity, addNewSubmission, getSubmission, getToken } from "apis";
 import { Button, Badge } from "baseComponents";
-import { CustomInput, OutputWindow, OutputDetails, CodeEditorWindow, LanguagesDropdown } from "components";
+import { CustomInput, OutputWindow, OutputDetails, CodeEditorWindow, LanguagesDropdown, QuestionDetails } from "components";
 import languageOptions from "configs/languageOptions.json";
 import { UserContext } from "contexts";
 import { defineTheme, showErrorToast, showSuccessToast } from "lib";
@@ -153,7 +153,7 @@ export const Main = ({ questionDetails }: Props) => {
         return languageOptions.find((lang) => lang.id === +questionDetails.language) || prev
       });
 
-      questionDetails.question && setCode(`//${questionDetails.question}`);
+      questionDetails.question && setCode(`// ${questionDetails.question}`);
     }
   }, [questionDetails])
 
@@ -161,8 +161,15 @@ export const Main = ({ questionDetails }: Props) => {
   return (
     <div className="bg-slate-900 pt-5 w-full h-full">
       <div className="flex flex-row justify-between">
-        <div className="px-4 py-2">
+        <div className="px-4 py-2 flex items-center">
           <LanguagesDropdown onSelectChange={(sl: Language) => setLanguage(sl)} language={language} />
+          {
+            questionDetails && (
+              <div className="px-5">
+                <QuestionDetails question={questionDetails} />
+              </div>
+            )
+          }
         </div>
         <div className="pr-4 pl-4 flex items-center">
           <div className="text-slate-500 flex px-2 items-center outline-slate-800 font-normal text-md outline-1">
