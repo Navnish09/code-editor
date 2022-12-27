@@ -38,15 +38,14 @@ export const Main = ({ questionDetails }: Props) => {
   // Hanlder for solidity compiler
   const handleSolidityCode = async () => {
     let res = await compileSolidity(code);
+
+    // If there are no errors, set the code as valid for submission
+    setValidCode(!res.errors ? code : "");
     
     setOutputDetails(res);
     showSuccessToast(TOASTIFY_MESSAGES.COMPILATION_SUCCESS);
     setProcessing(false);
-    
-    // If there are no errors, set the code as valid for submission
-    if (!res?.errors?.length) {
-      setValidCode(code);
-    }
+
   }
 
   /**
@@ -210,9 +209,7 @@ export const Main = ({ questionDetails }: Props) => {
               </Button>
 
               {
-                (
-                  (outputDetails?.status?.description === "Accepted" && code) && (validCode === code)
-                ) && (
+                (code && (validCode === code)) && (
                   <Button
                     onClick={handleSubmit}
                     type="success"
