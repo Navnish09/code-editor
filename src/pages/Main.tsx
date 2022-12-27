@@ -29,6 +29,7 @@ export const Main = ({ questionDetails }: Props) => {
   );
 
   const resetStates = () => {
+    setValidCode("");
     setCustomInput("");
     setOutputDetails(null);
     setProcessing(false);
