@@ -1,5 +1,6 @@
 import apiUrls from "../configs/apiUrls.json";
 import { createInternalServerAPIUrl } from "../utils/apiConfigs";
+import { authWrapper } from "./authWrapper";
 
 const solidityCompilerApi = apiUrls.solidityCompiler; 
 
@@ -16,5 +17,5 @@ export const compileSolidity = (code : string) => {
     body: JSON.stringify({ code }),
   };
 
-  return fetch(url, options).then((res) => res.json());
+  return authWrapper<Record<string, any>>(url, options);
 }

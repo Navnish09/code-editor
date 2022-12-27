@@ -1,5 +1,5 @@
 
-export const authWrapper = (url: RequestInfo | URL, options: Record<string,any>) => {
+export const authWrapper = <T>(url: RequestInfo | URL, options: Record<string,any>): Promise<T>=> {
   const token = localStorage.getItem("token");
 
   if(!token){
@@ -22,7 +22,7 @@ export const authWrapper = (url: RequestInfo | URL, options: Record<string,any>)
   return new Promise((resolve, reject) => {
     fetch(url, internalOptions)
       .then(async (res) => {
-        const data: Record<string, any> = await res.json();
+        const data: T = await res.json();
 
         if (!res.ok) {
           return Promise.reject(data);

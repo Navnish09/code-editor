@@ -29,6 +29,7 @@ export const Main = ({ questionDetails }: Props) => {
   );
 
   const resetStates = () => {
+    setValidCode("");
     setCustomInput("");
     setOutputDetails(null);
     setProcessing(false);
@@ -38,9 +39,14 @@ export const Main = ({ questionDetails }: Props) => {
   // Hanlder for solidity compiler
   const handleSolidityCode = async () => {
     let res = await compileSolidity(code);
+
+    // If there are no errors, set the code as valid for submission
+    setValidCode(!res.errors ? code : "");
+    
     setOutputDetails(res);
     showSuccessToast(TOASTIFY_MESSAGES.COMPILATION_SUCCESS);
     setProcessing(false);
+
   }
 
   /**
@@ -87,10 +93,10 @@ export const Main = ({ questionDetails }: Props) => {
   const checkStatus = async (token: string) => {
     try {
       const response = await getSubmission(token);
-      const statusId = response.data.status?.id;
+      const status = response.data.status;
 
       // Processed - we have a result
-      switch (statusId) {
+      switch (status?.id) {
         case 1:
         case 2:
           // Again check status after 2 second
@@ -98,11 +104,7 @@ export const Main = ({ questionDetails }: Props) => {
           break;
 
         default:
-          if (response.data.status?.description === "Accepted") {
-            setValidCode(code);
-          } else {
-            setValidCode("");
-          }
+          setValidCode(status?.description === "Accepted" ? code : "");
 
           setProcessing(false);
           setOutputDetails(response.data);
@@ -208,9 +210,7 @@ export const Main = ({ questionDetails }: Props) => {
               </Button>
 
               {
-                (
-                  (outputDetails?.status?.description === "Accepted" && code) && (validCode === code)
-                ) && (
+                (code && (validCode === code)) && (
                   <Button
                     onClick={handleSubmit}
                     type="success"
